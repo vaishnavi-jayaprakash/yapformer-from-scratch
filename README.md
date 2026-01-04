@@ -92,9 +92,25 @@ Modern GPU-friendly techniques:
 #  **Architecture ૮ - ﻌ • ა⁩**
 
 **Model Structure**
+```
+Model Structure (Decoder-Only Transformer)
 
-`Token  Embedding ↓ RoPE  Rotary  Position  Encoding ↓ N × [  RMSNorm ├── Multi-Head  Attention  (GQA  +  KV  Cache) ↓ Residual ↓ RMSNorm ├── SwiGLU  Feed-Forward ↓ Residual  ] ↓ Final  RMSNorm ↓ Linear  LM  Head` 
-
+Token Embedding
+        ↓
+Rotary Positional Encoding (RoPE)
+        ↓
+N × Transformer Blocks
+ ├─ RMSNorm
+ ├─ Grouped Query Attention (GQA + KV Cache)
+ ├─ Residual Connection
+ ├─ RMSNorm
+ ├─ SwiGLU Feed-Forward
+ └─ Residual Connection
+        ↓
+Final RMSNorm
+        ↓
+Linear Language Modeling Head
+```
 
 ----------
 
@@ -144,3 +160,4 @@ Prompt: `Once upon a time`
 ### **5. Example Output**
 
 `Once upon a time there was a tiny mouse who loved reading stories...`
+
