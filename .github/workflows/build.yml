@@ -2,9 +2,9 @@ name: Python CI for Yapformer
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -28,6 +28,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install torch
 
-      - name: Run basic Python check
+      - name: Syntax check
         run: |
-          python -m py_compile *.py
+          find . -name "*.py" | xargs python -m py_compile
